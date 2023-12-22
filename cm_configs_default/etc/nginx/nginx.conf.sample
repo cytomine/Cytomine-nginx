@@ -81,7 +81,7 @@ http {
             #proxy_set_header Upgrade $http_upgrade;
             #proxy_set_header Connection "upgrade";
         }
-        location ~ /(api|monitoring|login|logout|saml|saml2|server|session|custom-ui|static|restApiDoc|js/jsondoc|css/jsondoc)  {
+        location ~ /(api|login|logout|saml|saml2|server|session|custom-ui|static|restApiDoc|js/jsondoc|css/jsondoc)  {
             proxy_intercept_errors off;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header Host $host;
@@ -104,6 +104,14 @@ http {
         }
         location /www/ {
           alias /www/;
+        }
+        location /monitoring {
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $URLS_SCHEME;
+            set $tmpzabbixserverhost "$INTERNAL_URLS_ZABBIX_SERVER";
+            proxy_pass http://$tmpcorehost;
         }
 
         proxy_http_version 1.1;
