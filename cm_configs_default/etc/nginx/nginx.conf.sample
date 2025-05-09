@@ -118,6 +118,7 @@ http {
             proxy_pass http://$tmpwebuivar;
         }
         location ~ /(api|ws|login|logout|saml|saml2|server|session|custom-ui|static) {
+            proxy_read_timeout 600;
             proxy_intercept_errors off;
 
             set $tmpcorehost "$INTERNAL_URLS_CORE";
