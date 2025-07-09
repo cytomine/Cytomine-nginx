@@ -136,6 +136,7 @@ http {
             proxy_pass http://$tmpiamhost;
         }
         location ~ /(api|ws|server/ping|session/admin|custom-ui) {
+            proxy_read_timeout 600;
             proxy_intercept_errors off;
 
             set $tmpcorehost "$INTERNAL_URLS_CORE";
