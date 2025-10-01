@@ -1,5 +1,8 @@
 # Customized Nginx image
 
+> [!WARNING]  
+> **Deprecated:** This repository is no longer maintained. Please see [cytomine/cytomine](https://github.com/cytomine/cytomine) for the latest version.
+
 This Dockerfile relies on [official library Dockerfile](https://github.com/nginxinc/docker-nginx) with a customized entrypoint allowing to perform custom configuration with shell scripts found in `/docker-entrypoint.d/` during container startup.
 
 Currently registered script(s) :
